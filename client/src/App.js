@@ -1,6 +1,10 @@
+import { Button } from "rsuite";
+
 function App() {
   return (
-    <div>Home</div>
+    <div>Home
+      <Button appearance="primary"> Hello world </Button>
+    </div>
   );
 }
 
