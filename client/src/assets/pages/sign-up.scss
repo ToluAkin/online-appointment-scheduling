@@ -1,0 +1,50 @@
+.signup {
+    color: $primary;
+    &-header {
+        font-size: $font-xl;
+        color: $primary;
+        font-weight: $font-wt-900;
+    }
+    &-bg-img {
+        background: url('./../images/auth/sign-up.jpg') no-repeat center;
+        background-size: cover;
+        height: 100vh;
+        @include media-breakpoint-down(lg) {
+            height: 50vh;
+        }
+    }
+    &-form-wrapper {
+        box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+        border-radius: 10px;
+        padding: 70px 40px;
+        @include media-breakpoint-down(lg) {
+            box-shadow: none;
+            padding: 0 20px 20px;
+        }
+    }
+    label {
+        font-size: $font-sm;
+        font-weight: $font-wt-500;
+        letter-spacing: 0.05em;
+    }
+    input {
+        padding: 12px;
+        &:focus{
+            box-shadow: unset;
+            border-color: unset;
+        }
+    }
+    &-btn {
+        border: 1px solid $primary;
+        background-color: transparent;
+        padding: 12px 15px;
+        color: $primary;
+        font-size: $font-xs;
+        line-height: 1.5;
+        font-weight: $font-wt-700;
+        &:hover {
+            background-color: $primary;
+            color: $white;
+        }
+    }
+}

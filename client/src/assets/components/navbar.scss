@@ -1,0 +1,28 @@
+.navbar-menu {
+    &-logo{
+        font-size: $font-xl;
+        line-height: 1.5;
+        font-weight: $font-wt-900;
+        color: $primary;
+        height: unset;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    &-item{
+        font-size: $font-md;
+        line-height: 1.5;
+        font-weight: $font-wt-700;
+        color: $primary;
+        height: unset;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    p {
+        font-size: $font-md;
+        line-height: 1.5;
+        font-weight: $font-wt-700;
+        color: $primary;
+    }
+}
