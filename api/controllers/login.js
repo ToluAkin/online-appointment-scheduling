@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 
 const User = require('../models/user')
 
+// user login
 router.post('/', async (req, res) => {
     const user = await User.findOne({ email: req.body.email }).populate('booking', { user_id: 1, date: 1, note: 1 })
 

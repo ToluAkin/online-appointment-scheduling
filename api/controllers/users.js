@@ -5,11 +5,13 @@ const bcrypt = require('bcryptjs')
 //Model import
 const User = require('../models/user')
 
+// get all users
 router.get('/', async(req, res) => {
     const users = await User.find({})
     res.status(200).json(users.map(user => user.toJSON()))
 })
 
+// get user details
 router.get('/:id', async(req, res) => {
     const user = await User.findById(req.params.id)
     if (user) {
@@ -20,6 +22,7 @@ router.get('/:id', async(req, res) => {
     }
 })
 
+// create user account
 router.post('/', async(req, res) => {
     const { fullName, email, password } = req.body
 
@@ -34,6 +37,7 @@ router.post('/', async(req, res) => {
     }
 })
 
+// update share account for user
 router.put('/:id', async(req, res) => {
     const user = await User.findById(req.params.id)
     if (user) {

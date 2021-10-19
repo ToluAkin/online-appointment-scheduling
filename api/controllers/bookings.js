@@ -5,6 +5,7 @@ const router = express.Router()
 const Booking = require('../models/booking')
 const User = require('../models/user')
 
+// save a booking
 router.post('/', async(req, res) => {
     const { user_id, date, note } = req.body
 
