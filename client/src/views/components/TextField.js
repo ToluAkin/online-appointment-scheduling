@@ -1,7 +1,7 @@
 import { Form } from "rsuite"
 
 const TextField = (props) => {
-    const {name, label, accepter, message, error, ...rest} = props;
+    const {name, label, accepter, message,  placeholder, error, ...rest} = props;
 
     return (
         <Form.Group controlId={name}>
@@ -10,6 +10,7 @@ const TextField = (props) => {
                 name={name}
                 accepter={accepter}
                 errorMessage={error}
+                placeholder={placeholder}
                 {...rest}
             />
             <Form.HelpText>{message}</Form.HelpText>
