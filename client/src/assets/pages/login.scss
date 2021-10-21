@@ -6,7 +6,7 @@
         font-weight: $font-wt-900;
     }
     &-bg-img {
-        background: url('./../images/auth/sign-up.jpg') no-repeat center;
+        // background: url('./../images/auth/sign-up.jpg') no-repeat center;
         background-size: cover;
         height: 100vh;
         @include media-breakpoint-down(lg) {
@@ -29,6 +29,7 @@
     }
     input {
         padding: 12px;
+        border : 2px solid $primary;
         &:focus{
             box-shadow: unset;
             border-color: unset;
