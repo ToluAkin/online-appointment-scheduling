@@ -7,7 +7,6 @@ function App() {
     return (
         <BrowserRouter>
             <Navbar />
-            <Login />
             <Switch>
                 { PublicRoutes.map((publicRoute, i) => {
                     return <Route  exact={ publicRoute.exact } Key={ i } path={ publicRoute.path } component={ publicRoute.component } />

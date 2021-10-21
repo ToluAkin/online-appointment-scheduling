@@ -4,7 +4,7 @@ import SignUp from "../views/pages/SignUp";
 import { routes } from "./index";
 
 export const PublicRoutes = [
-    { 'component': Homepage, 'path':  routes.Home, exact: true },
-    { 'component': Login, 'path': routes.Login },
+    { 'component': Homepage, 'path':  routes.Home},
+    { 'component': Login, 'path': routes.Login, exact: true },
     { 'component': SignUp, 'path': routes.SignUp },
 ]
