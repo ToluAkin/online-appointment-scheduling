@@ -29,7 +29,7 @@
     }
     input {
         padding: 12px;
-        border : 2px solid $primary;
+        border : 1px solid $primary !important;
         &:focus{
             box-shadow: unset;
             border-color: unset;
@@ -48,4 +48,6 @@
             color: $white;
         }
     }
+
+
 }

@@ -17,13 +17,10 @@ const Login = () => {
     return (
         <div className='signup'>
         <Container>
-            <FlexboxGrid align='middle'>
-                <FlexboxGridItem as={Col} colspan={10} className='signup-bg-wrapper p-0' md={12} sm={24} xs={24}>
-                    <div className='signup-bg-img'></div>
-                </FlexboxGridItem>
-                <FlexboxGridItem as={Col} colspan={12} className='px-3 my-5 px-lg-5' md={12} sm={24} xs={24}>
+            <FlexboxGrid align='center'>
+                <FlexboxGridItem as={Col} colspan={12} className='px-1 my-2 px-lg-2' md={12} sm={24} xs={24}>
                     <Header className='mb-5'><h3 className='pb-5 signup-header text-center'>Sign In</h3></Header>
-                    <Form  fluid model={model} ref={formRef} className='signup-form-wrapper'>
+                    <Form  fluid model={model} ref={formRef} className='signup-form-wrapper mx-2'>
                         <TextField name='email' label='Email' />
                         <TextField name='password' label='Password' type='password' message='' autoComplete='off'/>
                         <Button className='signup-btn' type='submit'>Log In</Button>
