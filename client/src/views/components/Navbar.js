@@ -19,7 +19,7 @@ const NavbarMenu = ({ onSelect, activeKey}) => {
                             ?
                                 <Nav onSelect='' activeKey='' justified>
                                     <Nav.Item className='navbar-menu-item me-4 p-0' eventKey='1' href={routes.SignUp}>Create Account</Nav.Item>
-                                    <Nav.Item className='navbar-menu-item p-0' eventKey='2' href = {routes.Login}>Login</Nav.Item>
+                                    <Nav.Item className='navbar-menu-item p-0' eventKey='2' href={routes.Login}>Login</Nav.Item>
                                 </Nav>
                             :
                                 <>

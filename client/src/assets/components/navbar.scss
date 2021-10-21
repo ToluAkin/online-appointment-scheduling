@@ -8,6 +8,10 @@
         &:hover {
             text-decoration: none;
         }
+        &:active{
+            color: $primary;
+            text-decoration: none;
+        }
     }
     &-item{
         font-size: $font-md;
@@ -25,4 +29,4 @@
         font-weight: $font-wt-700;
         color: $primary;
     }
-} 
+}
