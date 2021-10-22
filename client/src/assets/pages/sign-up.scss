@@ -29,16 +29,13 @@
     }
     input {
         padding: 12px;
-        &:focus{
-            box-shadow: unset;
-            border-color: unset;
-        }
+        border : 1px solid $primary;
     }
     &-btn {
         border: 1px solid $primary;
-        background-color: transparent;
+        background-color: $primary;
         padding: 12px 15px;
-        color: $primary;
+        color: $white;
         font-size: $font-xs;
         line-height: 1.5;
         font-weight: $font-wt-700;
