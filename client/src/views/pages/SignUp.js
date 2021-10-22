@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import axios from 'axios'
-import { Button, Col, Container, FlexboxGrid, Form, Header, Schema } from "rsuite"
+import { Button, Col, Container, FlexboxGrid, Form, Header, Message, Notification, Schema, toaster } from "rsuite"
 import FlexboxGridItem from "rsuite/esm/FlexboxGrid/FlexboxGridItem"
 import TextField from "../components/TextField";
+
 
 const user ={
     fullName: '',
@@ -10,10 +11,13 @@ const user ={
     password:'',
 }
 
+const baseURL = 'http://localhost:3003'
 
 const SignUp = () => {
-    const formRef = useRef()
+    
+    const [placement, setPlacement] = useState('topEnd');
     const[newUser, setNewUser] = useState(user)
+    const formRef = useRef()
     
     const { StringType} = Schema.Types;
 
@@ -27,16 +31,21 @@ const SignUp = () => {
             .isRequired('This field is required.'),
         password: StringType()
             .isRequired('This field is required.')
-            .pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, 'Please enter legal characters'),
+            .pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, 'Password must contain Number, uppercase and lowercase Letter. Minimum password length is 8 characters'),
     })
-    console.log(newUser)
+
     const handleSubmit = () => {
-        axios.post('http://localhost:3003/api/users', newUser)
+        axios.post(`${baseURL}/api/users`, newUser)
                 .then((response) => {
                     setNewUser(response.data)
+                    toaster.push(
+                        <Notification type='success' header='Success' closable>
+                        </Notification>, {placement})
                 })
                 .catch(error => {
-                    console.log(error.response)
+                    toaster.push(
+                        <Message showIcon type="error" header='Error'></Message>
+                    );
                 }); 
     }
 
