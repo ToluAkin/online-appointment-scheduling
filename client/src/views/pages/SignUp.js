@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
+import { useHistory } from "react-router";
 import axios from 'axios'
 import { Button, Col, Container, FlexboxGrid, Form, Header, Message, Notification, Schema, toaster } from "rsuite"
 import FlexboxGridItem from "rsuite/esm/FlexboxGrid/FlexboxGridItem"
 import TextField from "../components/TextField";
+import { routes } from "../../routes";
 
 
 const user ={
@@ -18,6 +20,7 @@ const SignUp = () => {
     const [placement, setPlacement] = useState('topEnd');
     const[newUser, setNewUser] = useState(user)
     const formRef = useRef()
+    const history = useHistory()
     
     const { StringType} = Schema.Types;
 
@@ -39,8 +42,13 @@ const SignUp = () => {
                 .then((response) => {
                     setNewUser(response.data)
                     toaster.push(
-                        <Notification type='success' header='Success' closable>
-                        </Notification>, {placement})
+                        <Notification 
+                            type='success' 
+                            header='Success' 
+                            closable>
+                        </Notification>, {placement}
+                    )
+                    history.push(routes.Home)
                 })
                 .catch(error => {
                     toaster.push(
