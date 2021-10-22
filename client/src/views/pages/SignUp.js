@@ -5,7 +5,7 @@ import FlexboxGridItem from "rsuite/esm/FlexboxGrid/FlexboxGridItem"
 import TextField from "../components/TextField";
 
 const user ={
-    fullname: '',
+    fullName: '',
     email: '',
     password:'',
 }
@@ -16,32 +16,23 @@ const SignUp = () => {
     const[newUser, setNewUser] = useState(user)
     
     const { StringType} = Schema.Types;
+
     const model = Schema.Model({
-        fullname: StringType().isRequired('This field is required.'),
+        fullName: StringType().isRequired('This field is required.'),
         email: StringType()
             .isEmail('Please enter a valid email address.')
             .isRequired('This field is required.'),
-        password: StringType().isRequired('This field is required.'),
+        password: StringType().isRequired('This field is required.')
     })
 
     const handleSubmit = () => {
-
-        if (!formRef.current.check()) {
-            console.error('Form Error');
-            console.log(newUser)
-        } else {
-            axios.post('http://localhost:3003/api/users', newUser)
+        axios.post('http://localhost:3003/api/users', newUser)
                 .then((response) => {
-                    console.log(response)
-                    console.log('Everything is awesome.');
-                    setNewUser(response.data);
+                    setNewUser(response.data)
                 })
                 .catch(error => {
-                console.log(error.response)
-                    console.log('there is an error')
-            }); 
-        }
-        return;
+                    console.log(error.response)
+                }); 
     }
 
     return (
@@ -60,16 +51,26 @@ const SignUp = () => {
                             className='signup-form-wrapper'
                             onChange={setNewUser}
                         >
-                            <TextField name='fullname' label='Fullname' placeholder='Enter your Fullname'/>
-                            <TextField name='email' label='Email'  placeholder='Enter your Email'/>
+                            <TextField 
+                                name='fullName' 
+                                label='FullName' 
+                                placeholder='Enter your Fullname' 
+                            />
+                            <TextField 
+                                name='email' 
+                                label='Email'  
+                                placeholder='Enter your Email' 
+                            />
                             <TextField 
                                 name='password' 
                                 label='Password' 
                                 type='password' 
                                 placeholder='*******' 
-                                autoComplete='off'/>
+                                autoComplete='off'
+                            />
 
                             <Button className='signup-btn' type='submit' onClick={handleSubmit}>Sign Up</Button>
+
                         </Form>
                     </FlexboxGridItem>
                 </FlexboxGrid>
