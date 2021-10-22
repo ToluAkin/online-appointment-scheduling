@@ -18,13 +18,18 @@ const SignUp = () => {
     const { StringType} = Schema.Types;
 
     const model = Schema.Model({
-        fullName: StringType().isRequired('This field is required.'),
+        fullName: StringType()
+            .isRequired('This field is required.')
+            .minLength(3, 'Minimum 3 characters required')
+            .containsLetterOnly('Fullname should be Letters only'),
         email: StringType()
             .isEmail('Please enter a valid email address.')
             .isRequired('This field is required.'),
-        password: StringType().isRequired('This field is required.')
+        password: StringType()
+            .isRequired('This field is required.')
+            .pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, 'Please enter legal characters'),
     })
-
+    console.log(newUser)
     const handleSubmit = () => {
         axios.post('http://localhost:3003/api/users', newUser)
                 .then((response) => {
