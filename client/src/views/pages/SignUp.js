@@ -13,7 +13,7 @@ const user ={
     password:'',
 }
 
-const baseURL = 'http://localhost:3003'
+export const baseURL = 'http://localhost:3003'
 
 const SignUp = () => {
     
