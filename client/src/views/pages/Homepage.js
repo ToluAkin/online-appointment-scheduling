@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import {Avatar,  Header} from 'rsuite'
-import axios from 'axios'
-import { baseURL } from "./SignUp";
+import { fetchUser } from "../../services/auth";
 
 const Homepage =  () => {
 
     const[ existingUsers, setExistingUsers] = useState([]);
-
+    
     useEffect(() => {
-        const fetchUser = async () => {
-            const activeUser = await axios.get(`${baseURL}/api/users`)
-            setExistingUsers(activeUser.data)
-            console.log(existingUsers)
-        }
-        fetchUser()
-    }, [setExistingUsers])
-    console.log(existingUsers)
+        (async () => {
+            try{
+                const userList = await fetchUser()
+                const sharedUser = userList.filter(obj => obj.shared === 1)
+                setExistingUsers(sharedUser)
+            } catch (e) {
+                setExistingUsers(false)
+            }
+        })();
+    }, [])
 
     return (
         <section className='homepage'>
@@ -28,14 +29,14 @@ const Homepage =  () => {
                 <ul className='row gy-5 gx-5 mt-5'>
                     {existingUsers.map((user, index) => {
                         return (
-                            <li key={index} className='col-md-3 ' >
+                            <li key={index} className='col-md-4  col-lg-3' >
                                 <div className=' user-details text-center'> 
                                     <Avatar className='user-avatar'>
                                         <i className="bi bi-person user-icon"></i>
                                     </Avatar>
                                     <h3 className='mt-3 mb-0'>{user.username}</h3>
                                     <h3 className='mt-3 mb-0'>{user.fullName}</h3>
-                                    <h3 className='mt-3 mb-0'>{user.email}</h3>
+                                    <h3 className='mt-3 mb-0 text-break'>{user.email}</h3>
                                    
                                 </div>
                             </li>
