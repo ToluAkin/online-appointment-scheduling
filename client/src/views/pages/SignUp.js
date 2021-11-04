@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import axios from 'axios'
+
 import { Button, Col, Container, FlexboxGrid, Form, Header, Message, Notification, Schema, toaster } from "rsuite"
 import FlexboxGridItem from "rsuite/esm/FlexboxGrid/FlexboxGridItem"
 import TextField from "../components/TextField";
 import { routes } from "../../routes";
+import { createUser } from '../../services/auth'
 
 
 const user ={
@@ -13,7 +14,7 @@ const user ={
     password:'',
 }
 
-const baseURL = 'http://localhost:3003'
+export const baseURL = 'http://localhost:3003'
 
 const SignUp = () => {
     
@@ -21,8 +22,15 @@ const SignUp = () => {
     const[newUser, setNewUser] = useState(user)
     const formRef = useRef()
     const history = useHistory()
-    
     const { StringType} = Schema.Types;
+
+    useEffect(() =>{
+        return () => { resetState() }
+    }, [])
+
+    const resetState = () => {
+        setNewUser(user)
+    }
 
     const model = Schema.Model({
         fullName: StringType()
@@ -37,24 +45,24 @@ const SignUp = () => {
             .pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, 'Password must contain Number, uppercase and lowercase Letter. Minimum password length is 8 characters'),
     })
 
-    const handleSubmit = () => {
-        axios.post(`${baseURL}/api/users`, newUser)
-                .then((response) => {
-                    setNewUser(response.data)
-                    toaster.push(
-                        <Notification 
-                            type='success' 
-                            header='Success' 
-                            closable>
-                        </Notification>, {placement}
-                    )
-                    history.push(routes.Home)
-                })
-                .catch(error => {
-                    toaster.push(
-                        <Message showIcon type="error" header='Error'></Message>
-                    );
-                }); 
+    const handleSubmit = async e => {
+            try {
+                const dataObject = newUser
+                const addNewUser = await createUser(dataObject)
+                setNewUser(addNewUser)
+                toaster.push(
+                    <Notification 
+                        type='success' 
+                        header='Success' 
+                        closable>
+                    </Notification>, {placement}
+                )
+                history.push(routes.Home)
+            } catch (err) {
+                toaster.push(
+                    <Message showIcon type="error" header='Error'></Message>
+                );
+            }
     }
 
     return (
