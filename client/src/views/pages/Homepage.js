@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Avatar,  Header} from 'rsuite'
+import {Avatar,  Header, Notification, Message, toaster} from 'rsuite'
 import { fetchUser } from "../../services/auth";
 
 const Homepage =  () => {
@@ -13,7 +13,11 @@ const Homepage =  () => {
                 const sharedUser = userList.filter(obj => obj.shared === 1)
                 setExistingUsers(sharedUser)
             } catch (e) {
-                setExistingUsers(false)
+                toaster.push(
+                    <Notification>
+                        <Message showIcon type="error" header=''>An error occurred while fetching Shared Users details. Please wait or try again</Message>
+                    </Notification>
+                );
             }
         })();
     }, [])

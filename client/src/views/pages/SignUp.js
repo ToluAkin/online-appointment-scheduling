@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 
 import { Button, Col, Container, FlexboxGrid, Form, Header, Message, Notification, Schema, toaster } from "rsuite"
@@ -22,8 +22,15 @@ const SignUp = () => {
     const[newUser, setNewUser] = useState(user)
     const formRef = useRef()
     const history = useHistory()
-    
     const { StringType} = Schema.Types;
+
+    useEffect(() =>{
+        return () => { resetState() }
+    }, [])
+
+    const resetState = () => {
+        setNewUser(user)
+    }
 
     const model = Schema.Model({
         fullName: StringType()
