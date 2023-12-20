@@ -27,7 +27,7 @@
     "mongoose": "^5.13.20",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.0.2"
   },
   "devDependencies": {
     "ansi-regex": ">=5.0.1",
